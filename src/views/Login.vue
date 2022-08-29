@@ -18,7 +18,7 @@
       <span class="wj" @click="dialogFormVisible = true">忘记密码？</span>
       <el-input class="inp1" placeholder="验证码" v-model="form.yzm" clearable> </el-input>
       <el-image class="imgs" src="./logo.png"></el-image>
-      <el-button type="primary" class="deng">登录</el-button>
+      <el-button type="primary" class="deng" @click="deng()">登录</el-button>
     </div>
 
     <el-dialog title="修改密码" :visible.sync="dialogFormVisible">
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+// import axios from 'axios'
 export default {
   name: 'EfficientLogin',
   data() {
@@ -63,7 +64,13 @@ export default {
 
   mounted() {},
 
-  methods: {}
+  methods: {
+    deng() {
+      this.$axios.post('/effect/user/login').then((res) => {
+        console.log(res)
+      })
+    }
+  }
 }
 </script>
 
