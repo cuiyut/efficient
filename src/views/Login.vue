@@ -68,6 +68,7 @@ export default {
     deng() {
       this.$axios.post('/effect/user/login').then((res) => {
         console.log(res)
+        this.$router.push('/home')
       })
     }
   }
