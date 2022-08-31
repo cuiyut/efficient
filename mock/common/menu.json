@@ -23,11 +23,6 @@
 							"path": "/roles"
 					},
 					{
-							"id": 5,
-							"name": "权限管理",
-							"path": "/authority"
-					},
-					{
 							"id": 6,
 							"name": "菜单管理",
 							"path": "/menus"

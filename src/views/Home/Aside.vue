@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-aside width="200px">
+    <el-aside :width="isCollapse ? '50px' : '200px'">
       <el-menu router class="el-menu-vertical-demo" text-color="white" unique-opened active-text-color="#333">
         <div class="logo">
-          <img class="imgg" src="../assets/OA.png" alt="" />
-          <soan>OA管理系统</soan>
+          <img class="imgg" src="../../assets/OA.png" alt="" />
+          <span v-show="!isCollapse">OA管理系统</span>
         </div>
         <span v-for="item in list" :key="item.id">
           <!-- 一级路由	 -->
@@ -34,6 +34,7 @@
 export default {
   name: 'EfficientAside',
 
+  props: ['isCollapse'],
   data() {
     return {
       list: []
@@ -41,6 +42,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.isCollapse)
     this.$axios.get('/effect/shou/menus').then((res) => {
       this.list = res.data.menuData
     })
@@ -55,8 +57,8 @@ export default {
   background-color: #81b4ef;
   color: rgb(254, 254, 254);
   text-align: center;
-  line-height: 200px;
-  height: 770px;
+  line-height: 100px;
+  height: 100vh;
 }
 .el-menu {
   background-color: #81b4ef;

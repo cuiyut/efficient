@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-container>
-      <Asidee />
+      <Asidee :isCollapse="isCollapse" />
       <el-container>
         <el-header>
-          <Headerr />
+          <Headerr :isCollapse="isCollapse" @toggle="toggle()" />
         </el-header>
 
         <el-main>
@@ -16,16 +16,22 @@
 </template>
 
 <script>
-import Asidee from '@/components/Aside.vue'
-import Headerr from '@/components/Header.vue'
+import Asidee from './Aside.vue'
+import Headerr from './Header.vue'
 
 export default {
   name: 'EfficientHome',
   data() {
-    return {}
+    return {
+      isCollapse: false
+    }
   },
   mounted() {},
-  methods: {},
+  methods: {
+    toggle() {
+      this.isCollapse = !this.isCollapse
+    }
+  },
   components: {
     Asidee,
     Headerr
@@ -39,10 +45,12 @@ export default {
   color: #333;
   text-align: center;
   line-height: 60px;
+  border-bottom: 1px solid grey;
 }
 .el-main {
-  background-color: #e9eef3;
+  background-color: #ffffff;
   color: #333;
+  height: 90vh;
 }
 
 body > .el-container {

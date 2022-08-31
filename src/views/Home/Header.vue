@@ -3,7 +3,7 @@
     <div class="header">
       <!-- 控制侧边栏隐藏显示 -->
       <div class="changeAside">
-        <i :class="{ 'el-icon-s-fold': !isCollapse, 'el-icon-s-unfold': isCollapse }" @click="toggleAside"></i>
+        <i :class="isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'" @click="toggle()"></i>
       </div>
       <!-- 头部用户信息 -->
       <div class="user-msg">
@@ -16,8 +16,8 @@
         <el-badge :value="10" class="item" type="info">
           <p class="el-icon-message"></p>
         </el-badge>
-        <p :class="{ 'el-icon-full-screen': !is_full, 'el-icon-rank': is_full }" @click="full"></p>
-        <el-dropdown @command="handleCommand">
+        <p :class="!isFull ? 'el-icon-full-screen' : 'el-icon-rank'" @click="full"></p>
+        <el-dropdown>
           <div class="user-right">
             <p class="el-icon-s-custom headImg" style="margin-right: 10px"></p>
             <p style="font-size: 14px; color: #6c6c6c">超级管理员</p>
@@ -37,15 +37,44 @@
 export default {
   name: 'EfficientHeader',
 
+  props: ['isCollapse'],
   data() {
     return {
-      is_full: false
+      /**全屏标识 */
+      isFull: false
     }
   },
 
   mounted() {},
 
-  methods: {}
+  methods: {
+    /**侧边栏切换 */
+    toggle() {
+      this.$emit('toggle')
+    },
+    /**全屏 */
+    full() {
+      if (this.isFull) {
+        // 如果已经全屏了就退出全屏
+        if (document.exitFullscreen) {
+          document.exitFullscreen()
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen()
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen()
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen()
+        }
+      } else {
+        // 如果不是全屏就变成全屏
+        if (document.documentElement.RequestFullScreen) document.documentElement.RequestFullScreen()
+        if (document.documentElement.mozRequestFullScreen) document.documentElement.mozRequestFullScreen()
+        if (document.documentElement.webkitRequestFullScreen) document.documentElement.webkitRequestFullScreen()
+        if (document.documentElement.msRequestFullscreen) document.documentElement.msRequestFullscreen()
+      }
+      this.isFull = !this.isFull
+    }
+  }
 }
 </script>
 
