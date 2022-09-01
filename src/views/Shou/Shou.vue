@@ -58,27 +58,30 @@
         <!-- 中间右侧 -->
         <div class="staff-map">
           <div class="map-head">员工地区分布</div>
-          <div class="map-cnt"></div>
+          <div class="map-cnt">
+            <AreaChart />
+          </div>
         </div>
       </div>
       <div class="bottom">
         <p style="font-size: 18px; padding-left: 70px; margin-top: 10px">员工生日</p>
+        <BirthdayChart />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import AreaChart from '@/components/areaChart.vue'
+import BirthdayChart from '@/components/birthdayChart.vue'
 export default {
   name: 'EfficientShou',
-
   data() {
     return {}
   },
-
   mounted() {},
-
-  methods: {}
+  methods: {},
+  components: { AreaChart, BirthdayChart }
 }
 </script>
 
@@ -147,6 +150,7 @@ export default {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
     .date-box {
       width: 30%;
     }

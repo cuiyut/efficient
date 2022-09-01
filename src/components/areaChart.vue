@@ -52,7 +52,7 @@ export default {
 
 <style scoped lang="scss">
 #area {
-  width: 100%;
+  width: 96%;
   height: 200px;
   padding: 10px;
 }
